@@ -6,6 +6,8 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import org.json.JSONObject;
+
 import java.util.Calendar;
 import java.util.Random;
 
@@ -16,6 +18,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Integer[] items;
     private EditText edtItems;
     private TextView tvResult;
+    int i, j;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +57,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private void directSort() {
         //todo:直接选择排序的具体实现
+        int temp;
+        for(i=0;i<items.length-1;i++){
+            for(j=0;j<items.length-1;j++){
+                if(items[j]>items[j+1]){
+                    temp=items[j];
+                    items[j]=items[j+1];
+                    items[j+1]=temp;
+
+                }
+            }
+        }
     }
 
     private void generateItems() {
