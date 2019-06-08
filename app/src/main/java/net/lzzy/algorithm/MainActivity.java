@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Integer[] items;
     private EditText edtItems;
     private TextView tvResult;
-    int i, j;
+//    int i, j;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
