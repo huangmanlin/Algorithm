@@ -11,6 +11,8 @@ import org.json.JSONObject;
 import java.util.Calendar;
 import java.util.Random;
 
+import static java.util.Collections.swap;
+
 /**
  * @author Administrator
  */
@@ -57,17 +59,34 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private void directSort() {
         //todo:直接选择排序的具体实现
-        int temp;
-        for(i=0;i<10-1;i++){
-            for(j=0;j<10-1;j++){
-                if(items[j]>items[j+1]){
-                    temp=items[j];
-                    items[j]=items[j+1];
-                    items[j+1]=temp;
 
+        //分为有序区和无序区，每一趟排序都在有序区依次对比，记录对比区域的最小元素的位置
+        //然后把无序区第一个元素和所记录的最小元素进行交换，无序区少一个，有序区多一个，循环往复直至无序区
+        //元素数量为0
+        for(int i = 0;i<items.length-1;i++){
+            int minpos=i;
+            for(int j=i+1;j<items.length;j++){
+                if(items[minpos].compareTo(items[j])>0){
+                    minpos=j;
                 }
             }
+            swap(minpos,i);
         }
+//        int temp;
+//        for(i=0;i<10-1;i++){
+//            for(j=0;j<10-1;j++){
+//                if(items[j]>items[j+1]){
+//                    temp=items[j];
+//                    items[j]=items[j+1];
+//                    items[j+1]=temp;
+//
+//                }
+//            }
+//        }
+    }
+
+    private void swap(int minpos, int i) {
+
     }
 
     private void generateItems() {
