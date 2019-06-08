@@ -40,7 +40,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 displayItems(edtItems);
                 break;
             case R.id.activity_main_btn_sort:
-                directSort();
+//                directSort();
+                intsertSort();
                 displayItems(tvResult);
                 break;
             default:
@@ -83,6 +84,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //                }
 //            }
 //        }
+    }
+    private void intsertSort() {
+        //todo:直接插入排序
+        for(int i = 1; i < items.length; i++){
+            if(items[i] < items[i - 1]){
+                int temp=items[i];          //监视哨temp
+                int keys=i-1;               //keys表示为有序区域的最后一位
+                for (int j=keys;j>0 && temp<items[j];j--){    //从第i-1位向前并移位，直至找到小于第i位停止
+                    items[j+1]=items[j];
+                    keys--;      //有序区域的位置减少
+                }
+                items[keys+1]=temp;
+            }
+        }
     }
 
     private void swap(int m, int n) {
