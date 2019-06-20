@@ -2,17 +2,23 @@ package net.lzzy.algorithm;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.AndroidException;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import net.lzzy.algorithm.algorlib.BaseSort;
 import net.lzzy.algorithm.algorlib.DirectSort;
 import net.lzzy.algorithm.algorlib.InsertSort;
+import net.lzzy.algorithm.algorlib.SortFactory;
 
 import org.json.JSONObject;
 
 import java.util.Calendar;
+import java.util.Objects;
 import java.util.Random;
 
 /**
@@ -22,12 +28,24 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Integer[] items;
     private EditText edtItems;
     private TextView tvResult;
+    private Spinner spinner;
 //    int i, j;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        initviews();
+        initSpinner();
+
+    }
+
+    private void initSpinner() {
+        spinner=findViewById(R.id.activity_main_sp);
+        spinner.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item,SortFactory.getSortNames()));
+    }
+
+    private void initviews() {
         edtItems = findViewById(R.id.activity_main_edt_items);
         findViewById(R.id.activity_main_btn_generate).setOnClickListener(this);
         findViewById(R.id.activity_main_btn_sort).setOnClickListener(this);
@@ -38,21 +56,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.activity_main_btn_generate:
-                //directSort();
                 generateItems();
                 displayItems(edtItems);
                 break;
             case R.id.activity_main_btn_sort:
-                InsertSort<Integer>sort=new InsertSort<>(items);
-                sort.sortWithTime();
+                BaseSort<Integer> sort= SortFactory.getInstance(spinner.getSelectedItemPosition(),items);
+                BaseSort<Integer>sortNotNull= Objects.requireNonNull(sort);
+                sortNotNull.sortWithTime();
 //                DirectSort sort=new DirectSort(items);
 //                sort.sort();
-                String result=sort.getResult();
+                String result=sortNotNull.getResult();
              tvResult.setText(result);
-                     Toast.makeText(this,"总时长"+sort.getDuration(), Toast.LENGTH_SHORT).show();
+                     Toast.makeText(this,"总时长:"+sort.getDuration(), Toast.LENGTH_SHORT).show();
 //                directSort();
 //                intsertSort();
-                displayItems(tvResult);
                 break;
             default:
                 break;

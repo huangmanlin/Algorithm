@@ -5,7 +5,7 @@ package net.lzzy.algorithm.algorlib;
  * Description:
  */
 public class InsertSort<T extends Comparable<T>>extends BaseSort<T>{
-   public InsertSort(T[]items){
+      InsertSort(T[]items){
         super(items);
     }
 

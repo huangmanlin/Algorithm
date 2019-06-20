@@ -4,13 +4,18 @@ package net.lzzy.algorithm.algorlib;
  * Created by lzzy_gxy on 2019/6/20.
  * Description:
  */
-public abstract class ShellSort<T extends Comparable<? super T>> extends BaseSort<T>{
+public class ShellSort<T extends Comparable<? super T>> extends BaseSort<T>{
     ShellSort(T[] items) {
         super(items);
     }
 
     @Override
     public void Sort() {
+
+    }
+
+    @Override
+    public void sort() {
         int len=items.length;
         int g=len/2;
         while (g>0){
