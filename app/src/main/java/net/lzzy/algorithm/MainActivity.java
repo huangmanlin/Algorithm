@@ -5,13 +5,15 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import net.lzzy.algorithm.algorlib.DirectSort;
+import net.lzzy.algorithm.algorlib.InsertSort;
 
 import org.json.JSONObject;
 
 import java.util.Calendar;
 import java.util.Random;
-
-import static java.util.Collections.swap;
 
 /**
  * @author Administrator
@@ -36,12 +38,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.activity_main_btn_generate:
+                //directSort();
                 generateItems();
                 displayItems(edtItems);
                 break;
             case R.id.activity_main_btn_sort:
+                InsertSort<Integer>sort=new InsertSort<>(items);
+                sort.sortWithTime();
+//                DirectSort sort=new DirectSort(items);
+//                sort.sort();
+                String result=sort.getResult();
+             tvResult.setText(result);
+                     Toast.makeText(this,"总时长"+sort.getDuration(), Toast.LENGTH_SHORT).show();
 //                directSort();
-                intsertSort();
+//                intsertSort();
                 displayItems(tvResult);
                 break;
             default:
@@ -73,18 +83,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
             swap(minpos,i);
         }
-//        int temp;
-//        for(i=0;i<10-1;i++){
-//            for(j=0;j<10-1;j++){
-//                if(items[j]>items[j+1]){
-//                    temp=items[j];
-//                    items[j]=items[j+1];
-//                    items[j+1]=temp;
-//
-//                }
-//            }
-//        }
     }
+
     private void intsertSort() {
         //todo:直接插入排序
         for(int i = 1; i < items.length; i++){
@@ -114,3 +114,4 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 }
+
