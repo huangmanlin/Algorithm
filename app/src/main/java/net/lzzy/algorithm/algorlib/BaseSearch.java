@@ -15,6 +15,7 @@ public abstract class BaseSearch<T extends Comparable<? super T>> {
         this.items = items;
         compareCount = 0;
         compareMove = 0;
+
     }
 
     public BaseSearch() {
