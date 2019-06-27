@@ -41,4 +41,27 @@
             android:layout_height="wrap_content"
             android:text="排序"/>
     </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <Spinner
+            android:id="@+id/activity_mainsp"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"></Spinner>
+        <Button
+            android:id="@+id/activity_main_btngenerate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="生成排序数"/>
+        <Button
+            android:id="@+id/activity_main_btnsort"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="排序"/>
+    </LinearLayout>
+
+
 </LinearLayout>
