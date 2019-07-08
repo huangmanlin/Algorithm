@@ -15,7 +15,7 @@ public class SearchFactory{
                 search=new BinarySearch<>(items);
                 break;
             case 3:
-                search=new BinaryTree<>(items);
+                search=new BinaryTree(items);
                 break;
                 default:
                     return null;
